@@ -34,14 +34,8 @@ public:
     {
         if (isSelected())
         {
-            // g.fillAll (getUIColourIfAvailable (LookAndFeel_V4::ColourScheme::UIColour::highlightedFill,
-            //                                    Colours::teal));
             g.fillAll(Colours::teal);
         }
-
-        // g.setColour (getUIColourIfAvailable (LookAndFeel_V4::ColourScheme::UIColour::defaultText,
-        //                                      Colours::black));
-        
         g.setColour(Colours::black);
         
         g.setFont (15.0f);
@@ -161,10 +155,10 @@ public:
         rootItem.reset (new ValueTreeItem (createRootValueTree(), undoManager));
         tree.setRootItem (rootItem.get());
 
-        addAndMakeVisible (undoButton);
-        addAndMakeVisible (redoButton);
-        undoButton.onClick = [this] { undoManager.undo(); };
-        redoButton.onClick = [this] { undoManager.redo(); };
+//        addAndMakeVisible (undoButton);
+//        addAndMakeVisible (redoButton);
+//        undoButton.onClick = [this] { undoManager.undo(); };
+//        redoButton.onClick = [this] { undoManager.redo(); };
 
         startTimer (500);
 
@@ -178,7 +172,6 @@ public:
 
     void paint (Graphics& g) override
     {
-        // g.fillAll (getUIColourIfAvailable (LookAndFeel_V4::ColourScheme::UIColour::windowBackground));
         g.fillAll(Colours::white);
     }
 
@@ -186,85 +179,85 @@ public:
     {
         auto r = getLocalBounds().reduced (8);
 
-        auto buttons = r.removeFromBottom (22);
-        undoButton.setBounds (buttons.removeFromLeft (100));
-        buttons.removeFromLeft (6);
-        redoButton.setBounds (buttons.removeFromLeft (100));
+//        auto buttons = r.removeFromBottom (22);
+//        undoButton.setBounds (buttons.removeFromLeft (100));
+//        buttons.removeFromLeft (6);
+//        redoButton.setBounds (buttons.removeFromLeft (100));
 
-        r.removeFromBottom (4);
+//        r.removeFromBottom (4);
         tree.setBounds (r);
     }
 
-    static ValueTree createTree (const String& desc)
+    ValueTree createRootValueTree()
+    {
+//        auto vt = createTree ("This demo displays a ValueTree as a treeview.");
+//        vt.appendChild (createTree ("You can drag around the nodes to rearrange them"),               nullptr);
+//        vt.appendChild (createTree ("..and press 'delete' or 'backspace' to delete them"),            nullptr);
+//        vt.appendChild (createTree ("Then, you can use the undo/redo buttons to undo these changes"), nullptr);
+//
+//        int n = 1;
+//        vt.appendChild (createRandomTree (n, 0), nullptr);
+        auto vt = createTree("Task Queue Tree");
+        return vt;
+    }
+
+//    static ValueTree createRandomTree (int& counter, int depth)
+//    {
+//        auto t = createTree ("Item " + String (counter++));
+//
+//        if (depth < 3)
+//            for (int i = 1 + Random::getSystemRandom().nextInt (7); --i >= 0;)
+//                t.appendChild (createRandomTree (counter, depth + 1), nullptr);
+//
+//        return t;
+//    }
+
+//    void deleteSelectedItems()
+//    {
+//        OwnedArray<ValueTree> selectedItems;
+//        ValueTreeItem::getSelectedTreeViewItems (tree, selectedItems);
+//
+//        for (auto* v : selectedItems)
+//        {
+//            if (v->getParent().isValid())
+//                v->getParent().removeChild (*v, &undoManager);
+//        }
+//    }
+
+//    bool keyPressed (const KeyPress& key) override
+//    {
+//        if (key == KeyPress::deleteKey || key == KeyPress::backspaceKey)
+//        {
+//            deleteSelectedItems();
+//            return true;
+//        }
+//
+//        if (key == KeyPress ('z', ModifierKeys::commandModifier, 0))
+//        {
+//            undoManager.undo();
+//            return true;
+//        }
+//
+//        if (key == KeyPress ('z', ModifierKeys::commandModifier | ModifierKeys::shiftModifier, 0))
+//        {
+//            undoManager.redo();
+//            return true;
+//        }
+//
+//        return Component::keyPressed (key);
+//    }
+
+private:
+    ValueTree createTree (const String& desc)
     {
         ValueTree t ("Item");
         t.setProperty ("name", desc, nullptr);
         return t;
     }
-
-    static ValueTree createRootValueTree()
-    {
-        auto vt = createTree ("This demo displays a ValueTree as a treeview.");
-        vt.appendChild (createTree ("You can drag around the nodes to rearrange them"),               nullptr);
-        vt.appendChild (createTree ("..and press 'delete' or 'backspace' to delete them"),            nullptr);
-        vt.appendChild (createTree ("Then, you can use the undo/redo buttons to undo these changes"), nullptr);
-
-        int n = 1;
-        vt.appendChild (createRandomTree (n, 0), nullptr);
-
-        return vt;
-    }
-
-    static ValueTree createRandomTree (int& counter, int depth)
-    {
-        auto t = createTree ("Item " + String (counter++));
-
-        if (depth < 3)
-            for (int i = 1 + Random::getSystemRandom().nextInt (7); --i >= 0;)
-                t.appendChild (createRandomTree (counter, depth + 1), nullptr);
-
-        return t;
-    }
-
-    void deleteSelectedItems()
-    {
-        OwnedArray<ValueTree> selectedItems;
-        ValueTreeItem::getSelectedTreeViewItems (tree, selectedItems);
-
-        for (auto* v : selectedItems)
-        {
-            if (v->getParent().isValid())
-                v->getParent().removeChild (*v, &undoManager);
-        }
-    }
-
-    bool keyPressed (const KeyPress& key) override
-    {
-        if (key == KeyPress::deleteKey || key == KeyPress::backspaceKey)
-        {
-            deleteSelectedItems();
-            return true;
-        }
-
-        if (key == KeyPress ('z', ModifierKeys::commandModifier, 0))
-        {
-            undoManager.undo();
-            return true;
-        }
-
-        if (key == KeyPress ('z', ModifierKeys::commandModifier | ModifierKeys::shiftModifier, 0))
-        {
-            undoManager.redo();
-            return true;
-        }
-
-        return Component::keyPressed (key);
-    }
-
-private:
+    
     TreeView tree;
-    TextButton undoButton  { "Undo" },
-               redoButton  { "Redo" };
+//    TextButton undoButton  { "Undo" },
+//               redoButton  { "Redo" };
 
     std::unique_ptr<ValueTreeItem> rootItem;
     UndoManager undoManager;
