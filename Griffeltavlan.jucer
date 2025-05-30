@@ -4,6 +4,13 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="gHrpnV" name="Griffeltavlan">
     <GROUP id="{88B00938-9920-22C9-6216-9545AE95BB23}" name="Source">
+      <FILE id="fTlIdp" name="TaskQueueContainer.cpp" compile="1" resource="0"
+            file="Source/TaskQueueContainer.cpp"/>
+      <FILE id="Jf8bqN" name="TaskQueueContainer.h" compile="0" resource="0"
+            file="Source/TaskQueueContainer.h"/>
+      <FILE id="awLfUF" name="TaskQueueItem.cpp" compile="1" resource="0"
+            file="Source/TaskQueueItem.cpp"/>
+      <FILE id="B9024g" name="TaskQueueItem.h" compile="0" resource="0" file="Source/TaskQueueItem.h"/>
       <FILE id="Q5kG3J" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="xSFjdn" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="bDlsuc" name="MainComponent.cpp" compile="1" resource="0"
